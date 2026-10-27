@@ -81,37 +81,3 @@ themeButton === null || themeButton === void 0 ? void 0 : themeButton.addEventLi
     localStorage.setItem("selected-theme", getCurrentTheme());
     localStorage.setItem("selected-icon", getCurrentIcon());
 });
-/*==================== REDUCE THE SIZE AND PRINT ON AN A4 SHEET ====================*/
-function scaleCV() {
-    document.body.classList.add("scale-cv");
-}
-/*==================== REMOVE THE SIZE WHEN THE CV IS DOWNLOADED ====================*/
-function removeScale() {
-    document.body.classList.remove("scale-cv");
-}
-// PDF generated area
-var areaCv = document.getElementById("area-cv");
-var resumeButton = document.getElementById("resume-button");
-// Html2pdf options
-var opt = {
-    margin: 0,
-    filename: "zainResume.pdf",
-    image: { type: "jpeg", quality: 0.98 },
-    html2canvas: { scale: 4 },
-    jsPDF: { unit: "px", format: [794, 1123] },
-};
-// Function to call `areaCv` and Html2Pdf options
-function generateResume() {
-    if (areaCv) {
-        html2pdf(areaCv, opt);
-    }
-}
-// When the button is clicked, it executes the three functions
-resumeButton === null || resumeButton === void 0 ? void 0 : resumeButton.addEventListener("click", function () {
-    // 1. Add the `.scale-cv` class to the body to reduce the size of the elements
-    scaleCV();
-    // 2. Generate the PDF
-    generateResume();
-    // 3. Remove the `.scale-cv` class after 5 seconds
-    setTimeout(removeScale, 5000);
-});
